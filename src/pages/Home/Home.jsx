@@ -3,6 +3,7 @@ import HeroSlider from "../../components/banner/carosal";
 import HowItworks from "../../components/HowItWorks/HowItworks";
 import OurServices from "../../components/OurServeice/OurServices";
 import PartnerBrands from "../../components/PerterBrands/PartnerBrands";
+import ProcessSection from "../../components/ProcessSection/ProcessSection";
 
 const HomePage = () => {
   return (
@@ -11,6 +12,7 @@ const HomePage = () => {
       <HowItworks />
       <OurServices />
       <PartnerBrands />
+      <ProcessSection />
     </div>
   );
 };
