@@ -65,7 +65,7 @@ export default function HeroSlider() {
             alt={`slide-1`}
           />
         </SwiperSlide>
-        <SwiperSlide className="relative overflow-hidden h-full border">
+        <SwiperSlide className="relative overflow-hidden h-full">
           <div className="absolute bottom-32 left-2.5 sm:left-[104px] flex items-center justify-start gap-2.5">
             <Link to={"/"} className="btn rounded-full bg-primary">
               Track Your Parcel
