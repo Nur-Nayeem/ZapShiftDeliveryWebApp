@@ -7,22 +7,22 @@ const NavBar = () => {
   const links = (
     <>
       <li>
-        <NavLink to="">Services</NavLink>
+        <NavLink to="/services">Services</NavLink>
       </li>
       <li>
         <NavLink to="/coverage">Coverage</NavLink>
       </li>
       <li>
-        <NavLink to="">About Us</NavLink>
+        <NavLink to="/about">About Us</NavLink>
       </li>
       <li>
-        <NavLink to="">Pricing</NavLink>
+        <NavLink to="/pricing">Pricing</NavLink>
       </li>
       <li>
-        <NavLink to="">Blogs</NavLink>
+        <NavLink to="/blogs">Blogs</NavLink>
       </li>
       <li>
-        <NavLink to="">Contact</NavLink>
+        <NavLink to="/contact">Contact</NavLink>
       </li>
     </>
   );
