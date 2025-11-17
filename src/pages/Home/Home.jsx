@@ -5,6 +5,7 @@ import OurServices from "../../components/OurServeice/OurServices";
 import PartnerBrands from "../../components/PerterBrands/PartnerBrands";
 import ProcessSection from "../../components/ProcessSection/ProcessSection";
 import ReviewsOfClients from "../../components/ReviewsOfClients/ReviewsOfClients";
+import FrequentlyAskedqn from "../../components/frequentlyAskedQna/FrequentlyAskedqn";
 
 const HomePage = () => {
   return (
@@ -15,6 +16,7 @@ const HomePage = () => {
       <PartnerBrands />
       <ProcessSection />
       <ReviewsOfClients />
+      <FrequentlyAskedqn />
     </div>
   );
 };
