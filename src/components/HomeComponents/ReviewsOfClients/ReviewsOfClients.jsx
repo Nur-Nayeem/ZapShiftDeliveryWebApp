@@ -6,7 +6,7 @@ import {
   Navigation,
   Autoplay,
 } from "swiper/modules";
-import image from "../../assets/customer-top.png";
+import image from "../../../assets/customer-top.png";
 
 import "swiper/css";
 import "swiper/css/pagination";

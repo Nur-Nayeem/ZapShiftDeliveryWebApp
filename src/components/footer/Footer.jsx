@@ -1,7 +1,7 @@
 import React from "react";
 import Logo from "../navbar/Logo";
 import { NavLink } from "react-router";
-import { FaFacebook } from "react-icons/fa";
+import { FaFacebook, FaGithub, FaInstagram, FaLinkedin } from "react-icons/fa";
 
 const Footer = () => {
   const links = (
@@ -27,7 +27,7 @@ const Footer = () => {
     </>
   );
   return (
-    <div className="text-center flex flex-col w-full">
+    <div className="text-center flex flex-col w-full py-10">
       <div className="max-w-4xl mx-auto flex flex-col  justify-center items-center space-y-2.5 my-2.5">
         <Logo />
         <p>
@@ -41,9 +41,9 @@ const Footer = () => {
       </ul>
       <div className="flex justify-center items-center gap-2.5 my-5">
         <FaFacebook />
-        <FaFacebook />
-        <FaFacebook />
-        <FaFacebook />
+        <FaInstagram />
+        <FaLinkedin />
+        <FaGithub />
       </div>
     </div>
   );

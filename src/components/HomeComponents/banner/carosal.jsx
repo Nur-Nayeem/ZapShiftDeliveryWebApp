@@ -7,9 +7,9 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
-import img1 from "../../assets/banner/banner1.png";
-import img2 from "../../assets/banner/banner2.png";
-import img3 from "../../assets/banner/banner3.png";
+import img1 from "../../../assets/banner/banner1.png";
+import img2 from "../../../assets/banner/banner2.png";
+import img3 from "../../../assets/banner/banner3.png";
 import { Link } from "react-router";
 import { BsArrowUpRightCircleFill } from "react-icons/bs";
 export default function HeroSlider() {

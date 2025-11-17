@@ -1,5 +1,5 @@
 import React from "react";
-import service from "../../assets/service.png";
+import service from "../../../assets/service.png";
 const ServiceCard = () => {
   return (
     <div className="px-3.5 py-5 bg-white rounded-2xl flex flex-col items-center justify-center cursor-pointer hover:bg-primary">

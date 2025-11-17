@@ -1,5 +1,5 @@
 import React from "react";
-import pickup from "../../assets/bookingIcon.png";
+import pickup from "../../../assets/bookingIcon.png";
 import HowItWorksCard from "./HowItWorksCard";
 
 const HowItworks = () => {

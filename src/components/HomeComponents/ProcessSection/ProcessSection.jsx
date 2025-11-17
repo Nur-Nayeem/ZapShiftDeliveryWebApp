@@ -1,5 +1,5 @@
 import React from "react";
-import safeDelivery from "../../assets/safe-delivery.png";
+import safeDelivery from "../../../assets/safe-delivery.png";
 const ProcessSection = () => {
   return (
     <div className="space-y-5">
