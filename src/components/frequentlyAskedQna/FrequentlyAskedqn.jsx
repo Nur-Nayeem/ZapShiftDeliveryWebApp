@@ -14,7 +14,7 @@ const FrequentlyAskedqn = () => {
           with ease!
         </p>
       </div>
-      <div className="max-w-4xl mx-auto space-y-2.5">
+      <div className="max-w-6xl mx-auto space-y-2.5">
         <QnaCard />
         <QnaCard />
         <QnaCard />

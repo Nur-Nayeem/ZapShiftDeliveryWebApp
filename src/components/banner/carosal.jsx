@@ -27,7 +27,7 @@ export default function HeroSlider() {
         }}
         navigation={false}
         modules={[Autoplay, Pagination, Navigation]}
-        className="mySwiper h-[650px]"
+        className="mySwiper h-[650px] rounded-2xl"
       >
         <SwiperSlide className="relative overflow-hidden">
           <div className="absolute bottom-32 left-2.5 sm:left-[104px] flex items-center justify-start gap-2.5">
