@@ -16,3 +16,14 @@ body {
   font-optical-sizing: auto;
   font-style: normal;
 }
+
+.swiper-slide {
+  opacity: 0.4;
+  transform: scale(0.85);
+  transition: all 0.3s ease-in-out;
+}
+
+.swiper-slide-active {
+  opacity: 1;
+  transform: scale(1);
+}
