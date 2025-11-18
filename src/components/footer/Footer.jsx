@@ -1,28 +1,28 @@
 import React from "react";
 import Logo from "../navbar/Logo";
-import { NavLink } from "react-router";
+import { Link } from "react-router";
 import { FaFacebook, FaGithub, FaInstagram, FaLinkedin } from "react-icons/fa";
 
 const Footer = () => {
   const links = (
     <>
       <li>
-        <NavLink to="">Services</NavLink>
+        <Link to="">Services</Link>
       </li>
       <li>
-        <NavLink to="/coverage">Coverage</NavLink>
+        <Link to="/coverage">Coverage</Link>
       </li>
       <li>
-        <NavLink to="">About Us</NavLink>
+        <Link to="">About Us</Link>
       </li>
       <li>
-        <NavLink to="">Pricing</NavLink>
+        <Link to="">Pricing</Link>
       </li>
       <li>
-        <NavLink to="">Blogs</NavLink>
+        <Link to="">Blogs</Link>
       </li>
       <li>
-        <NavLink to="">Contact</NavLink>
+        <Link to="">Contact</Link>
       </li>
     </>
   );

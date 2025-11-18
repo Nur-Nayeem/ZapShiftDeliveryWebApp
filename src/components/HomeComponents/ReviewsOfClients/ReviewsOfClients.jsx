@@ -70,7 +70,6 @@ export default function ReviewsOfClients() {
         centeredSlides={true}
         grabCursor={true}
         slidesPerView={3}
-        loop={true}
         coverflowEffect={{
           rotate: 0,
           stretch: 50,

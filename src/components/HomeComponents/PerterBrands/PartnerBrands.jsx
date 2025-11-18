@@ -26,7 +26,6 @@ const PartnerBrands = () => {
       </h2>
       <div>
         <Swiper
-          loop={true}
           slidesPerView={4}
           centeredSlides={true}
           spaceBetween={30}

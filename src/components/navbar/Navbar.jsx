@@ -2,8 +2,19 @@ import React from "react";
 import { Link, NavLink } from "react-router";
 import Logo from "./Logo";
 import { BsArrowUpRightCircleFill } from "react-icons/bs";
+import useAuth from "../../hook/useAuth";
 
 const NavBar = () => {
+  const { user, signOutUser } = useAuth();
+  const handleLogOut = () => {
+    signOutUser()
+      .then(() => {
+        console.log("LogOut succefull");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   const links = (
     <>
       <li>
@@ -54,7 +65,7 @@ const NavBar = () => {
             {links}
           </ul>
         </div>
-        <Link className="text-xl">
+        <Link to={"/"} className="text-xl">
           <Logo />
         </Link>
       </div>
@@ -62,8 +73,32 @@ const NavBar = () => {
         <ul className="menu menu-horizontal px-1">{links}</ul>
       </div>
       <div className="navbar-end space-x-2">
-        <Link className="btn rounded-xl">Sign In</Link>
-        <Link className="btn rounded-xl bg-primary">Sign Up</Link>
+        {user ? (
+          <>
+            <button onClick={handleLogOut} className="btn rounded-xl">
+              Log Out
+            </button>
+            <figure className="size-9 rounded-full border-2 border-gray-300 flex items-center justify-center">
+              <img
+                src={user.photoURL}
+                onError={(e) => {
+                  e.currentTarget.src = "/user.png";
+                }}
+                alt=""
+                className="rounded-full w-full h-full"
+              />
+            </figure>
+          </>
+        ) : (
+          <>
+            <Link to={"/login"} className="btn rounded-xl">
+              Sign In
+            </Link>
+            <Link to={"register"} className="btn rounded-xl bg-primary">
+              Sign Up
+            </Link>
+          </>
+        )}
 
         <Link className="">
           <BsArrowUpRightCircleFill className="size-8" />
