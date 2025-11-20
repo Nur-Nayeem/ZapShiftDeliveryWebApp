@@ -13,7 +13,7 @@ import { GoogleAuthProvider } from "firebase/auth";
 
 const AuthContextProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const [authLoading, setAuthLoading] = useState(false);
+  const [authLoading, setAuthLoading] = useState(true);
 
   const gogoleProvider = new GoogleAuthProvider();
 

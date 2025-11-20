@@ -5,6 +5,8 @@ import CoveragePage from "../pages/CoveragePage/CoveragePage";
 import AuthLayout from "../layoutes/AuthLayout";
 import Login from "../pages/auth/Login";
 import Register from "../pages/auth/Register";
+import PrivateRoutes from "./PrivateRoutes";
+import AddParcel from "../pages/addParcel/AddParcel";
 
 const route = createBrowserRouter([
   {
@@ -18,6 +20,15 @@ const route = createBrowserRouter([
       {
         path: "coverage",
         Component: CoveragePage,
+        loader: () => fetch("/ServiceCenter.json").then((res) => res.json()),
+      },
+      {
+        path: "send-percel",
+        element: (
+          <PrivateRoutes>
+            <AddParcel />
+          </PrivateRoutes>
+        ),
         loader: () => fetch("/ServiceCenter.json").then((res) => res.json()),
       },
     ],
