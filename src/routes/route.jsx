@@ -7,6 +7,8 @@ import Login from "../pages/auth/Login";
 import Register from "../pages/auth/Register";
 import PrivateRoutes from "./PrivateRoutes";
 import AddParcel from "../pages/addParcel/AddParcel";
+import DashBoardLayout from "../layoutes/DashBoardLayout";
+import MyParcels from "../pages/dashboard/my-Parcels/MyParcels";
 
 const route = createBrowserRouter([
   {
@@ -23,7 +25,7 @@ const route = createBrowserRouter([
         loader: () => fetch("/ServiceCenter.json").then((res) => res.json()),
       },
       {
-        path: "send-percel",
+        path: "send-parcel",
         element: (
           <PrivateRoutes>
             <AddParcel />
@@ -44,6 +46,20 @@ const route = createBrowserRouter([
       {
         path: "register",
         Component: Register,
+      },
+    ],
+  },
+  {
+    path: "/",
+    Component: DashBoardLayout,
+    children: [
+      {
+        path: "/my-parcels",
+        element: (
+          <PrivateRoutes>
+            <MyParcels />
+          </PrivateRoutes>
+        ),
       },
     ],
   },

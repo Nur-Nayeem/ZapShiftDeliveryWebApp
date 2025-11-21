@@ -24,7 +24,7 @@ const NavBar = () => {
         <NavLink to="/coverage">Coverage</NavLink>
       </li>
       <li>
-        <NavLink to="/send-percel">Send Percel</NavLink>
+        <NavLink to="/send-parcel">Send parcel</NavLink>
       </li>
       <li>
         <NavLink to="/about">About Us</NavLink>
@@ -38,6 +38,7 @@ const NavBar = () => {
       <li>
         <NavLink to="/contact">Contact</NavLink>
       </li>
+      <li>{user && <NavLink to={"/my-parcels"}>My parcels</NavLink>}</li>
     </>
   );
   return (
