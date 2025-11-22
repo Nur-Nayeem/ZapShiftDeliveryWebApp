@@ -3,7 +3,6 @@ import useAuth from "../../../hook/useAuth";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../hook/useAxiosSecure";
 import { FaMagnifyingGlass, FaTrashCan } from "react-icons/fa6";
-import { FiEdit } from "react-icons/fi";
 import Swal from "sweetalert2";
 
 const MyParcels = () => {
@@ -16,6 +15,18 @@ const MyParcels = () => {
       return res.data;
     },
   });
+
+  const handlePayment = async (parcel) => {
+    const payemtInfo = {
+      parcelName: parcel.parcelName,
+      parcelId: parcel._id,
+      cost: parcel.cost,
+      senderEmail: parcel.senderEmail,
+    };
+    const res = await axiosSecure.post("/make-pament-session", payemtInfo);
+    console.log(res.data.url);
+    window.location.assign(res.data.url);
+  };
 
   const handleParcelDelete = (id) => {
     console.log(id);
@@ -56,7 +67,9 @@ const MyParcels = () => {
             <tr>
               <th>SI</th>
               <th>Name</th>
+              <th>Recipient Info</th>
               <th>Cost</th>
+              <th>Payment</th>
               <th>Actions</th>
             </tr>
           </thead>
@@ -65,17 +78,41 @@ const MyParcels = () => {
               <tr key={parcel._id}>
                 <th>{index + 1}</th>
                 <td>{parcel.parcelName}</td>
+                <td>
+                  <span>{parcel.receiverName}</span>
+                  <br />
+                  <span>
+                    {parcel.receiverAddress}", "{parcel.receiverDistrict}", "
+                    {parcel.receiverDivision}
+                  </span>
+                  <br />
+                </td>
                 <td>{parcel.cost}</td>
                 <td>
-                  <button className="btn btn-square hover:bg-primary">
-                    <FaMagnifyingGlass />
-                  </button>
-                  <button className="btn btn-square hover:bg-primary mx-2">
-                    <FiEdit />
+                  {parcel.paymentStatus === "paid" ? (
+                    <span className="text-green-400">Paid</span>
+                  ) : (
+                    <span className="text-orange-400">Unpaid</span>
+                  )}
+                </td>
+
+                <td>
+                  {parcel.paymentStatus !== "paid" && (
+                    <button
+                      onClick={() => handlePayment(parcel)}
+                      className="btn btn-square bg-primary/90 hover:bg-primary w-16"
+                    >
+                      Pay
+                    </button>
+                  )}
+
+                  <button className="btn btn-square hover:bg-primary mx-2 w-16">
+                    View
+                    {/* <FaMagnifyingGlass/> */}
                   </button>
                   <button
                     onClick={() => handleParcelDelete(parcel._id)}
-                    className="btn btn-square hover:bg-primary"
+                    className="btn btn-square hover:bg-red-400 hover:text-white"
                   >
                     <FaTrashCan />
                   </button>

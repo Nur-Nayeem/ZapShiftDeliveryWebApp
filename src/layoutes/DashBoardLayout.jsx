@@ -75,7 +75,7 @@ const DashBoardLayout = () => {
             {/* List item */}
             <li>
               <Link
-                to={"/my-parcels"}
+                to={"/dashboard/my-parcels"}
                 className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
               >
                 {/* parcel icon */}

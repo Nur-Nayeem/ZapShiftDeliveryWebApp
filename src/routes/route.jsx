@@ -9,6 +9,9 @@ import PrivateRoutes from "./PrivateRoutes";
 import AddParcel from "../pages/addParcel/AddParcel";
 import DashBoardLayout from "../layoutes/DashBoardLayout";
 import MyParcels from "../pages/dashboard/my-Parcels/MyParcels";
+import Payment from "../pages/dashboard/Payment/Payment";
+import PaymentSuccess from "../pages/dashboard/Payment/PaymentSuccess";
+import PaymentCancelled from "../pages/dashboard/Payment/PaymentCancelled";
 
 const route = createBrowserRouter([
   {
@@ -50,14 +53,42 @@ const route = createBrowserRouter([
     ],
   },
   {
-    path: "/",
-    Component: DashBoardLayout,
+    path: "/Dashboard",
+    element: (
+      <PrivateRoutes>
+        <DashBoardLayout />
+      </PrivateRoutes>
+    ),
     children: [
       {
-        path: "/my-parcels",
+        path: "my-parcels",
         element: (
           <PrivateRoutes>
             <MyParcels />
+          </PrivateRoutes>
+        ),
+      },
+      {
+        path: "payment",
+        element: (
+          <PrivateRoutes>
+            <Payment />
+          </PrivateRoutes>
+        ),
+      },
+      {
+        path: "payment-success",
+        element: (
+          <PrivateRoutes>
+            <PaymentSuccess />
+          </PrivateRoutes>
+        ),
+      },
+      {
+        path: "payment-cancelled",
+        element: (
+          <PrivateRoutes>
+            <PaymentCancelled />
           </PrivateRoutes>
         ),
       },
