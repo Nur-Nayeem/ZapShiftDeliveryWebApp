@@ -24,7 +24,6 @@ const MyParcels = () => {
       senderEmail: parcel.senderEmail,
     };
     const res = await axiosSecure.post("/make-pament-session", payemtInfo);
-    console.log(res.data.url);
     window.location.assign(res.data.url);
   };
 
