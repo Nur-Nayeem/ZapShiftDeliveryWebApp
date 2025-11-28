@@ -4,6 +4,7 @@ import { FcGoogle } from "react-icons/fc";
 import { RxEyeClosed, RxEyeOpen } from "react-icons/rx";
 import { Link, useNavigate } from "react-router";
 import useAuth from "../../hook/useAuth";
+import axios from "axios";
 const Login = () => {
   const [showPass, setShowPass] = useState(false);
   const { SignInUser, signInWithGoogle } = useAuth();
@@ -30,8 +31,20 @@ const Login = () => {
   const handleSignInWithGoogle = () => {
     signInWithGoogle()
       .then((res) => {
-        console.log(res.user);
-        navigate("/");
+        const userInfo = {
+          email: res.user.email,
+          displayName: res.user.displayName,
+          photoURL: res.user.photoURL,
+        };
+        axios
+          .post("http://localhost:4000/user", userInfo)
+          .then((res) => {
+            console.log("user data has been stored", res.data);
+            navigate("/");
+          })
+          .catch((error) => {
+            console.log(error);
+          });
       })
       .catch((err) => {
         console.log(err);

@@ -13,6 +13,7 @@ import Payment from "../pages/dashboard/Payment/Payment";
 import PaymentSuccess from "../pages/dashboard/Payment/PaymentSuccess";
 import PaymentCancelled from "../pages/dashboard/Payment/PaymentCancelled";
 import PaymentHistory from "../pages/dashboard/PaymentHistory/PaymentHistory";
+import BeARider from "../pages/beARider/BeARider";
 
 const route = createBrowserRouter([
   {
@@ -33,6 +34,15 @@ const route = createBrowserRouter([
         element: (
           <PrivateRoutes>
             <AddParcel />
+          </PrivateRoutes>
+        ),
+        loader: () => fetch("/ServiceCenter.json").then((res) => res.json()),
+      },
+      {
+        path: "be-rider",
+        element: (
+          <PrivateRoutes>
+            <BeARider />
           </PrivateRoutes>
         ),
         loader: () => fetch("/ServiceCenter.json").then((res) => res.json()),

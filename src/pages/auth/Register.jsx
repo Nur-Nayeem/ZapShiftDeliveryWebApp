@@ -37,6 +37,18 @@ const Register = () => {
             };
             updateUserProfile(updateProfileInfo)
               .then(() => {
+                const userDetails = {
+                  email: data.email,
+                  displayName: data.name,
+                  photoURL: updateProfileInfo.photoURL,
+                };
+                axios
+                  .post("http://localhost:4000/user", userDetails)
+                  .then((res) => {
+                    if (res.data.insertedId) {
+                      console.log("user created in the database");
+                    }
+                  });
                 console.log("successfully update user");
                 reset();
                 navigate("/");
@@ -56,8 +68,20 @@ const Register = () => {
   const handleSignInWithGoogle = () => {
     signInWithGoogle()
       .then((res) => {
-        console.log(res.user);
-        navigate("/");
+        const userInfo = {
+          email: res.user.email,
+          displayName: res.user.displayName,
+          photoURL: res.user.photoURL,
+        };
+        axios
+          .post("http://localhost:4000/user", userInfo)
+          .then((res) => {
+            console.log("user data has been stored", res.data);
+            navigate("/");
+          })
+          .catch((error) => {
+            console.log(error);
+          });
       })
       .catch((err) => {
         console.log(err);
