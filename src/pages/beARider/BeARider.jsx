@@ -1,12 +1,14 @@
 import React from "react";
 import { useForm, useWatch } from "react-hook-form";
 import rider from "../../assets/rider/agent-pending.png";
-import { Navigate, useLoaderData } from "react-router";
+import { useLoaderData, useNavigate } from "react-router";
 import useAxiosSecure from "../../hook/useAxiosSecure";
 import useAuth from "../../hook/useAuth";
+import Swal from "sweetalert2";
 
 const BeARider = () => {
   const serviceCenters = useLoaderData();
+  const navigate = useNavigate();
   const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
   const { register, handleSubmit, control } = useForm();
@@ -26,8 +28,13 @@ const BeARider = () => {
       .post("/riders", data)
       .then((res) => {
         if (res.data.insertedId) {
-          console.log("insert riders request data");
-          Navigate("/");
+          navigate("/");
+          Swal.fire({
+            icon: "success",
+            title: "Successfully submitted your request",
+            showConfirmButton: false,
+            timer: 2000,
+          });
         }
       })
       .catch((err) => {

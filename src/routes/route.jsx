@@ -14,6 +14,7 @@ import PaymentSuccess from "../pages/dashboard/Payment/PaymentSuccess";
 import PaymentCancelled from "../pages/dashboard/Payment/PaymentCancelled";
 import PaymentHistory from "../pages/dashboard/PaymentHistory/PaymentHistory";
 import BeARider from "../pages/beARider/BeARider";
+import ApproveRiders from "../pages/dashboard/approveRiders/ApproveRiders";
 
 const route = createBrowserRouter([
   {
@@ -76,6 +77,14 @@ const route = createBrowserRouter([
         element: (
           <PrivateRoutes>
             <MyParcels />
+          </PrivateRoutes>
+        ),
+      },
+      {
+        path: "approve-riders",
+        element: (
+          <PrivateRoutes>
+            <ApproveRiders />
           </PrivateRoutes>
         ),
       },

@@ -1,7 +1,8 @@
 import React from "react";
 import { TbTruckDelivery } from "react-icons/tb";
 import { FaRegCreditCard } from "react-icons/fa6";
-import { Link, Outlet } from "react-router";
+import { Link, NavLink, Outlet } from "react-router";
+import { FaMotorcycle } from "react-icons/fa";
 
 const DashBoardLayout = () => {
   return (
@@ -50,7 +51,7 @@ const DashBoardLayout = () => {
           <ul className="menu w-full grow">
             {/* List item */}
             <li>
-              <Link
+              <NavLink
                 to={"/"}
                 className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
                 data-tip="Homepage"
@@ -70,19 +71,19 @@ const DashBoardLayout = () => {
                   <path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
                 </svg>
                 <span className="is-drawer-close:hidden">Homepage</span>
-              </Link>
+              </NavLink>
             </li>
 
             {/* List item */}
             <li>
-              <Link
+              <NavLink
                 to={"/dashboard/my-parcels"}
                 className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
               >
                 {/* parcel icon */}
                 <TbTruckDelivery className="text-lg" />
                 <span className="is-drawer-close:hidden">My parcels</span>
-              </Link>
+              </NavLink>
             </li>
 
             <li>
@@ -95,6 +96,16 @@ const DashBoardLayout = () => {
                 <FaRegCreditCard className="text-lg" />
                 <span className="is-drawer-close:hidden">My parcels</span>
               </Link>
+            </li>
+            <li>
+              <NavLink
+                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                data-tip="Approve Riders"
+                to="/dashboard/approve-riders"
+              >
+                <FaMotorcycle />
+                <span className="is-drawer-close:hidden">Approve Riders</span>
+              </NavLink>
             </li>
           </ul>
         </div>
