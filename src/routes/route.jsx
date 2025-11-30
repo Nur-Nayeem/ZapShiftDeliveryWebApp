@@ -5,7 +5,6 @@ import CoveragePage from "../pages/CoveragePage/CoveragePage";
 import AuthLayout from "../layoutes/AuthLayout";
 import Login from "../pages/auth/Login";
 import Register from "../pages/auth/Register";
-import PrivateRoutes from "./PrivateRoutes";
 import AddParcel from "../pages/addParcel/AddParcel";
 import DashBoardLayout from "../layoutes/DashBoardLayout";
 import MyParcels from "../pages/dashboard/my-Parcels/MyParcels";
@@ -15,6 +14,9 @@ import PaymentCancelled from "../pages/dashboard/Payment/PaymentCancelled";
 import PaymentHistory from "../pages/dashboard/PaymentHistory/PaymentHistory";
 import BeARider from "../pages/beARider/BeARider";
 import ApproveRiders from "../pages/dashboard/approveRiders/ApproveRiders";
+import UsersManagement from "../pages/dashboard/user-management/UserManagement";
+import AdminRoute from "./SecureRoutes/AdminRoute";
+import PrivateRoutes from "./SecureRoutes/PrivateRoutes";
 
 const route = createBrowserRouter([
   {
@@ -83,9 +85,17 @@ const route = createBrowserRouter([
       {
         path: "approve-riders",
         element: (
-          <PrivateRoutes>
+          <AdminRoute>
             <ApproveRiders />
-          </PrivateRoutes>
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "users-management",
+        element: (
+          <AdminRoute>
+            <UsersManagement />
+          </AdminRoute>
         ),
       },
       {
