@@ -5,6 +5,7 @@ import { RxEyeClosed, RxEyeOpen } from "react-icons/rx";
 import { Link, useNavigate } from "react-router";
 import useAuth from "../../hook/useAuth";
 import axios from "axios";
+import Swal from "sweetalert2";
 const Register = () => {
   const [showPass, setShowPass] = useState(false);
   const { signUpUser, signInWithGoogle, updateUserProfile } = useAuth();
@@ -18,16 +19,51 @@ const Register = () => {
 
   const handleRegister = (data) => {
     console.log("form data", data);
-    const profileImg = data.photo[0];
+
+    const profileImg =
+      data.photo && data.photo.length > 0 ? data.photo[0] : null;
+
     signUpUser(data.email, data.password)
       .then((res) => {
         console.log(res.user);
+
+        // If no image selected, update profile with default image
+        if (!profileImg) {
+          const updateProfileInfo = {
+            displayName: data.name,
+            photoURL: "https://i.ibb.co/F7gM0Zk/default-profile.png", // optional default
+          };
+
+          updateUserProfile(updateProfileInfo)
+            .then(() => {
+              const userDetails = {
+                email: data.email,
+                displayName: data.name,
+                photoURL: updateProfileInfo.photoURL,
+              };
+
+              axios.post("http://localhost:4000/user", userDetails).then(() => {
+                Swal.fire({
+                  title: "Registration successful",
+                  icon: "success",
+                });
+                reset();
+                navigate("/");
+              });
+            })
+            .catch((err) => console.log(err));
+
+          return; // STOP execution here
+        }
+
+        // If image exists, upload it
         const formData = new FormData();
         formData.append("image", profileImg);
 
         const imageApiUrl = `https://api.imgbb.com/1/upload?key=${
           import.meta.env.VITE_Image_Host
         }`;
+
         axios
           .post(imageApiUrl, formData)
           .then((res) => {
@@ -35,36 +71,36 @@ const Register = () => {
               displayName: data.name,
               photoURL: res.data.data.url,
             };
-            updateUserProfile(updateProfileInfo)
-              .then(() => {
-                const userDetails = {
-                  email: data.email,
-                  displayName: data.name,
-                  photoURL: updateProfileInfo.photoURL,
-                };
-                axios
-                  .post("http://localhost:4000/user", userDetails)
-                  .then((res) => {
-                    if (res.data.insertedId) {
-                      console.log("user created in the database");
-                    }
-                  });
-                console.log("successfully update user");
+
+            updateUserProfile(updateProfileInfo).then(() => {
+              const userDetails = {
+                email: data.email,
+                displayName: data.name,
+                photoURL: updateProfileInfo.photoURL,
+              };
+
+              axios.post("http://localhost:4000/user", userDetails).then(() => {
+                Swal.fire({
+                  title: "Registration successful",
+                  icon: "success",
+                });
+
                 reset();
                 navigate("/");
-              })
-              .catch((err) => {
-                console.log(err);
               });
+            });
           })
-          .catch((err) => {
-            console.log(err);
-          });
+          .catch((err) => console.log(err));
       })
       .catch((err) => {
-        console.log(err);
+        Swal.fire({
+          title: "Error!",
+          text: err.message,
+          icon: "error",
+        });
       });
   };
+
   const handleSignInWithGoogle = () => {
     signInWithGoogle()
       .then((res) => {
@@ -76,6 +112,10 @@ const Register = () => {
         axios
           .post("http://localhost:4000/user", userInfo)
           .then((res) => {
+            Swal.fire({
+              title: "login succefull",
+              icon: "success",
+            });
             console.log("user data has been stored", res.data);
             navigate("/");
           })
@@ -84,9 +124,15 @@ const Register = () => {
           });
       })
       .catch((err) => {
-        console.log(err);
+        Swal.fire({
+          title: "Error!",
+          text: err,
+          icon: "error",
+          confirmButtonText: "Cool",
+        });
       });
   };
+
   return (
     <form
       onSubmit={handleSubmit(handleRegister)}

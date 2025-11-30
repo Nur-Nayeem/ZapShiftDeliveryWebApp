@@ -106,10 +106,6 @@ const NavBar = () => {
             </Link>
           </>
         )}
-
-        <Link className="">
-          <BsArrowUpRightCircleFill className="size-8" />
-        </Link>
       </div>
     </div>
   );

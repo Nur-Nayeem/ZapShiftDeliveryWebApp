@@ -5,6 +5,7 @@ import { RxEyeClosed, RxEyeOpen } from "react-icons/rx";
 import { Link, useNavigate } from "react-router";
 import useAuth from "../../hook/useAuth";
 import axios from "axios";
+import Swal from "sweetalert2";
 const Login = () => {
   const [showPass, setShowPass] = useState(false);
   const { SignInUser, signInWithGoogle } = useAuth();
@@ -19,12 +20,20 @@ const Login = () => {
   const handleLogin = (data) => {
     console.log("form data", data);
     SignInUser(data.email, data.password)
-      .then((res) => {
-        console.log(res.user);
+      .then(() => {
+        Swal.fire({
+          title: "Login successful",
+          icon: "success",
+        });
         reset();
         navigate("/");
       })
       .catch((err) => {
+        Swal.fire({
+          title: "Error!",
+          text: err.message,
+          icon: "error",
+        });
         console.log(err);
       });
   };
@@ -38,8 +47,12 @@ const Login = () => {
         };
         axios
           .post("http://localhost:4000/user", userInfo)
-          .then((res) => {
-            console.log("user data has been stored", res.data);
+          .then(() => {
+            Swal.fire({
+              title: "Login successful",
+              icon: "success",
+            });
+
             navigate("/");
           })
           .catch((error) => {
@@ -47,7 +60,11 @@ const Login = () => {
           });
       })
       .catch((err) => {
-        console.log(err);
+        Swal.fire({
+          title: "Error!",
+          text: err.message,
+          icon: "error",
+        });
       });
   };
   return (
